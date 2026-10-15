@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#21140d">
+
+  <title>Aroma Coffee — Good Coffee, <br>Better Days</title>
+
+  <meta
+    name="description"
+    content="Discover beautiful coffee moments with Aroma Coffee. Freshly brewed coffee, silky milk, rich chocolate and refreshing iced drinks."
+  >
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================================
+       HERO SECTION
+       Background: mugs.jpg
+  ========================================== -->
+  <header class="hero" id="home">
+
+    <nav class="navbar" aria-label="Main navigation">
+
+      <a href="#home" class="brand">
+        Aroma<span>.</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">Our Story</a>
+        <a href="#menu">Menu</a>
+      </div>
+
+    </nav>
+
+    <div class="hero-content">
+
+      <p class="eyebrow">YOUR DAILY DOSE OF HAPPINESS</p>
+
+      <h1>
+        Good Coffee.<br>
+        Better Days.
+      </h1>
+
+      <p class="hero-description">
+        Crafted with passion, poured with love.
+        Discover the little moments that make life beautiful.
+      </p>
+
+      <a href="#menu" class="button button-light">
+        Explore Our Menu
+        <span aria-hidden="true">→</span>
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================================
+       TWO CONTENT COLUMNS
+       These columns slide apart to reveal
+       the coffee animation.
+  ========================================== -->
+  <main>
+
+    <section class="split-content" id="content">
+
+      <!-- LEFT COLUMN: OUR STORY -->
+      <article class="content-column left-column" id="about">
+
+        <img
+          src="mug1.jpg"
+          alt="Freshly roasted coffee beans"
+          loading="lazy"
+        >
+
+        <div class="column-copy">
+
+          <p class="eyebrow">OUR STORY</p>
+
+          <h2>
+            More than coffee.
+            It's a feeling.
+          </h2>
+
+          <p>
+            At Aroma Coffee, every cup tells a story.
+            From carefully selected beans to the final
+            delicious pour, we believe that great coffee
+            should awaken your senses and brighten your day.
+          </p>
+
+          <p>
+            Whether you need a peaceful morning moment
+            or an afternoon pick-me-up, your perfect cup
+            is waiting for you.
+          </p>
+
+          <a href="#menu" class="button button-dark">
+            Discover Our Story
+            <span aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- RIGHT COLUMN: MENU -->
+      <article class="content-column right-column" id="menu">
+
+        <div class="column-copy">
+
+          <p class="eyebrow">MADE FOR YOUR MOMENTS</p>
+
+          <h2>
+            Find your perfect blend.
+          </h2>
+
+          <p>
+            Rich espresso, creamy cappuccino, silky lattes
+            and refreshing iced coffee. Whatever your mood,
+            there is a little Aroma magic waiting for you.
+          </p>
+
+        </div>
+
+        <div class="menu-gallery">
+
+          <img
+            src="mug2.jpg"
+            alt="Creamy latte with beautiful latte art"
+            loading="lazy"
+          >
+
+          <img
+            src="mug3.jpg"
+            alt="Refreshing iced coffee"
+            loading="lazy"
+          >
+
+          <img
+            src="mug1.jpg"
+            alt="Freshly prepared cappuccino"
+            loading="lazy"
+          >
+
+          <img
+            src="mug2.jpg"
+            alt="Rich espresso in a coffee cup"
+            loading="lazy"
+          >
+
+        </div>
+
+        <a href="#home" class="button button-dark">
+          Back to Top
+          <span aria-hidden="true">↑</span>
+        </a>
+
+      </article>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
+  <footer>
+
+    <a href="#home" class="footer-brand">
+      AROMA COFFEE
+    </a>
+
+    <p>
+      Good coffee. Better days. Always.
+    </p>
+
+    <p>
+      &copy; <span id="currentYear"></span> Aroma Coffee.
+      All rights reserved.
+    </p>
+
+  </footer>
+
+
+  <!-- =========================================
+       FIXED TRANSPARENT GLASS
+
+       This stays in front of the background,
+       milk, chocolate and falling ice.
+  ========================================== -->
+  <div class="cup-overlay" aria-hidden="true">
+
+    <img
+      src="mu.png"
+      alt=""
+      draggable="false"
+    >
+
+  </div>
+
+
+  <!-- =========================================
+       COFFEE ANIMATION REVEAL
+
+       layer2.jpg remains the permanent
+       background. JavaScript adds the milk,
+       chocolate and ice layers inside it.
+  ========================================== -->
+  <section
+    class="reveal"
+    id="reveal"
+    aria-label="Aroma Coffee animated experience"
+    aria-live="off"
+  >
+
+    <!-- Permanent background plus layered effects -->
+    <div
+      class="reveal-background"
+      id="revealBackground"
+    ></div>
+
+
+    <!-- Promotional text -->
+    <div class="reveal-copy">
+
+      <p class="eyebrow" id="sceneEyebrow">
+        THE NEXT CHAPTER
+      </p>
+
+      <h2 id="sceneTitle">
+        From bean to beautiful.
+      </h2>
+
+      <p id="sceneDescription">
+        Every great cup begins with carefully selected beans.
+      </p>
+
+    </div>
+
+
+    <!-- Scene indicator -->
+    <div class="scene-counter" id="sceneCounter">
+      AROMA COFFEE
+    </div>
+
+
+    <!-- Replay button -->
+    <button
+      type="button"
+      id="replayButton"
+      class="replay-button"
+      hidden
+    >
+      Replay experience ↻
+    </button>
+
+  </section>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+  <script>
+    // Automatically update the copyright year.
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+  </script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

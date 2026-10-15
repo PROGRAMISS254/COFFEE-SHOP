@@ -1,0 +1,588 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+  --cream: #f5eee3;
+  --brown: #351d11;
+  --gold: #d4a373;
+  --ink: #20140e;
+}
+
+*{ box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  color: white;
+  background:
+    linear-gradient(90deg, #160b06d9 0%, #160b064d 60%, #160b0620 100%),
+    url("mugs.jpg") center center / cover no-repeat;
+}
+
+.navbar {
+  min-height: 78px;
+  padding: 20px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff20;
+  position: relative;
+  z-index: 1;
+}
+
+.brand {
+  font: italic 600 2rem 'Playfair Display', serif;
+  letter-spacing: .5px;
+}
+
+.brand span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  font-size: .9rem;
+}
+
+.nav-links a { transition: color .25s; }
+.nav-links a:hover { color: var(--gold); }
+
+.hero-content {
+  position: absolute;
+  top: 29%;
+  left: 13%;
+  max-width: 560px;
+  z-index: 1;
+}
+
+.eyebrow {
+  color: #ad6938;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero .eyebrow { color: #e2b383; }
+
+h1, h2 { font-family: 'Playfair Display', Georgia, serif; }
+
+.hero h1 {
+  font-size: clamp(3.2rem, 6.5vw, 6.3rem);
+  line-height: .99;
+  margin: 12px 0 18px;
+  letter-spacing: -2px;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 14px 22px;
+  margin-top: 18px;
+  border-radius: 40px;
+  font-size: .9rem;
+  font-weight: 700;
+  transition: transform .25s, background .25s;
+}
+
+.button:hover { transform: translateY(-3px); }
+.button span { font-size: 1.15rem; }
+.button-light { background: var(--gold); color: #21140d; }
+.button-dark { background: #6c3518; color: white; }
+
+/* SPLIT CONTENT */
+.split-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  position: relative;
+  z-index: 11;
+  background:transparent;
+  overflow: visible;
+}
+
+.content-column {
+  min-width: 0;
+  padding: 55px 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+  background: var(--cream);
+  position: relative;
+  will-change: transform;
+  transition: transform 3.5s cubic-bezier(.65, 0, .25, 1);
+}
+
+.left-column,
+.right-column {
+  transform: translateX(0);
+}
+
+.content-column > img {
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.column-copy h2 {
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  line-height: 1.12;
+  margin: 12px 0;
+}
+
+.column-copy p:not(.eyebrow) {
+  line-height: 1.8;
+  margin-top: 0;
+}
+
+.menu-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.menu-gallery img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.content-column .button {
+  align-self: flex-start;
+  margin-top: 0;
+}
+
+/* FOOTER */
+footer {
+  min-height: 68px;
+  padding: 20px 12%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  color: var(--cream);
+  background: #21130c;
+  font-size: .85rem;
+  position: relative;
+  z-index: 11;
+  transition: opacity 2s ease;
+}
+
+.footer-brand {
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+/* FIXED TRANSPARENT GLASS — ALWAYS IN FRONT */
+.cup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cup-overlay img {
+  display: block;
+  width: clamp(280px, 38vw, 490px);
+  max-height: 88vh;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 22px #0003);
+}
+
+/* REVEAL SCENE */
+.reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  background: #21130c;
+  transition: opacity .5s ease, visibility .5s;
+}
+
+.reveal.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*
+  IMPORTANT:
+  layer2.jpg stays as the permanent background.
+  Milk, chocolate and ice are separate layers.
+*/
+.reveal-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #21130c;
+  background-image: url("layer2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* MILK SPILL — LARGE, BEHIND CHOCOLATE */
+.reveal-background .spill {
+  position: absolute;
+  inset: auto;
+  left: 50%;
+  top: 52%;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(.65);
+  transition:
+    opacity .8s ease,
+    transform 1.2s cubic-bezier(.2, .75, .25, 1),
+    visibility .8s;
+}
+
+.reveal-background .milk-spill {
+  width: min(100vw, 1200px);
+  max-height: 95vh;
+  z-index: 1;
+}
+
+.reveal-background .chocolate-spill {
+  width: min(68vw, 820px);
+  max-height: 78vh;
+  z-index: 2;
+  top: 51%;
+}
+
+/* JavaScript adds these classes at the right time */
+.reveal-background .milk-spill.visible,
+.reveal-background .chocolate-spill.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.reveal-background .chocolate-spill.visible {
+  animation: chocolatePop .9s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+@keyframes chocolatePop {
+  0% {
+    transform: translate(-50%, -50%) scale(.45);
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ICE CUBES FALL IN FRONT OF THE SPILLS, BEHIND THE GLASS */
+/* ICE CUBES FALL ENDLESSLY */
+.ice-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 1; /* Keep it visible or trigger it when desired */
+}
+.ice-layer .ice-cube {
+  position: absolute;
+  top: -18vh;
+  left: var(--left);
+  width: var(--size);
+  height: auto;
+  object-fit: contain;
+  opacity: .92;
+  animation: iceFall var(--duration) linear var(--delay) infinite; /* Loops endlessly */
+  filter: drop-shadow(0 4px 7px #0002);
+}
+
+@keyframes iceFall {
+  0% {
+    transform: translate3d(0, -15vh, 0) rotate(0deg);
+  }
+  45% {
+    transform: translate3d(var(--drift), 50vh, 0) rotate(150deg);
+  }
+  100% {
+    transform: translate3d(calc(var(--drift) * -0.5), 120vh, 0) rotate(360deg);
+  }
+}
+
+/* TEXT ABOVE THE BACKGROUND EFFECTS */
+.reveal-copy {
+  position: absolute;
+  z-index: 4;
+  left: 8%;
+  bottom: 12%;
+  max-width: 650px;
+  color: white;
+  text-shadow: 0 2px 18px #000b;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+}
+
+.reveal.open .reveal-copy { opacity: 1; }
+.reveal-copy .eyebrow { color: #f1c092; }
+
+.reveal-copy h2 {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  margin: 12px 0;
+}
+
+.reveal-copy > p:last-child {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.scene-counter {
+  position: absolute;
+  z-index: 5;
+  top: 28px;
+  right: 30px;
+  color: white;
+  font-size: .78rem;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #000;
+}
+
+.replay-button {
+  position: absolute;
+  z-index: 6;
+  bottom: 28px;
+  right: 30px;
+  border: 0;
+  border-radius: 30px;
+  padding: 13px 20px;
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* SPLIT TRANSITION */
+body.transitioning .left-column {
+  transform: translateX(-110%);
+}
+
+body.transitioning .right-column {
+  transform: translateX(110%);
+}
+
+body.transitioning footer {
+  opacity: 0;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .navbar { padding: 20px 6%; }
+  .brand { font-size: 1.5rem; }
+  .nav-links { gap: 12px; font-size: .75rem; }
+
+  .hero {
+    min-height: 90vh;
+    background-position: 57% center;
+  }
+
+  .hero-content {
+    left: 7%;
+    right: 6%;
+    top: 27%;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+
+  .split-content { grid-template-columns: 1fr; }
+  .content-column { padding: 35px 7%; }
+  .content-column > img { height: 250px; }
+  .menu-gallery img { height: 180px; }
+
+  .cup-overlay img {
+    width: clamp(220px, 65vw, 330px);
+    max-height: 70vh;
+  }
+
+  .reveal-background .milk-spill {
+    width: 115vw;
+    max-height: 75vh;
+  }
+
+  .reveal-background .chocolate-spill {
+    width: 82vw;
+    max-height: 60vh;
+  }
+
+  .reveal-background .spill {
+    top: 46%;
+  }
+
+  .reveal-copy {
+    left: 7%;
+    right: 7%;
+    bottom: 8%;
+  }
+
+  .scene-counter {
+    top: 20px;
+    right: 15px;
+  }
+
+  footer {
+    padding: 25px 7%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .content-column {
+    transition-duration: .01ms;
+  }
+
+  .reveal-background .spill {
+    transition-duration: .01ms;
+  }
+}
+
+/* =========================================
+   ICE CUBES — LAYER 2 ONLY
+========================================= */
+
+.ice-cubes-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.ice-cube {
+  position: absolute;
+  top: -80px;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(177, 224, 246, 0.5) 48%,
+    rgba(255, 255, 255, 0.75)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    inset -5px -5px 10px rgba(88, 155, 190, 0.22),
+    inset 4px 4px 8px rgba(255, 255, 255, 0.9),
+    0 4px 10px rgba(0, 0, 0, 0.08);
+
+  animation: iceCubeFall linear forwards;
+}
+
+.ice-cube::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  width: 7px;
+  height: 17px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  transform: rotate(35deg);
+}
+
+@keyframes iceCubeFall {
+  from {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+
+  to {
+    translate: 30px 110vh;
+    rotate: 360deg;
+  }
+}
+
+/* Layer 2 is the positioning container */
+#revealBackground {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Ice cubes exist only inside Layer 2 */
+#revealBackground .ice-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#revealBackground .ice-layer.active {
+  opacity: 1;
+}
+
+/* Individual falling cubes */
+#revealBackground .ice-cube {
+  position: absolute;
+  top: -90px;
+  width: var(--size);
+  height: var(--size);
+  object-fit: contain;
+  pointer-events: none;
+
+  animation:
+    iceFall var(--duration) linear forwards;
+}
+
+@keyframes iceFall {
+  from {
+    transform: translate3d(0, -5vh, 0) rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate3d(var(--drift), 110vh, 0)
+      rotate(540deg);
+  }
+}
